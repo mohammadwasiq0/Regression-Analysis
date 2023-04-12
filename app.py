@@ -64,7 +64,7 @@ if uploaded_file is not None:
 		y_var = st.selectbox('Select dependent variable (Y)',data_file.columns)
 		col3 , col4 = st.columns(2)
 		with col3:
-			if st.checkbox("Simple linear regression"):
+			if st.checkbox("Simple Linear Regression"):
 				
 				fil = data_file.drop(y_var,axis=1)
 				x_var = st.selectbox('Select independent variable (X)',fil.columns)
@@ -75,13 +75,13 @@ if uploaded_file is not None:
 
 				st.write("**"+"VALIDATING ASSUMPTIONS:"+"**")
 
-				#LINEARITY
+				# LINEARITY
 				st.markdown("<span style='color:green;font-size:20px'>✓</span> " + "Linearity", unsafe_allow_html=True)
 
 				#INDEPENDENCE
 				st.markdown("<span style='color:green;font-size:20px'>✓</span> " + "Independence of observation", unsafe_allow_html=True)
 				
-				#MULTICOLINEARITY
+				# MULTICOLINEARITY
 				st.markdown("<span style='color:green;font-size:20px'>✓</span> " + "Multicollinearity", unsafe_allow_html=True)
 
 				count = 3
@@ -93,14 +93,14 @@ if uploaded_file is not None:
 				#st.write('White test statistic: ', white_test[0])
 				#st.write('White test p-value: ', white_test[1])
 
-				#HOMOSCEDASTICITY
+				# HOMOSCEDASTICITY
 				if white_test[1] > 0.05:
 					count = count + 1
 					st.markdown("<span style='color:green;font-size:20px'>✓</span> " + "Homoscedasticity", unsafe_allow_html=True)
 				else:
 					st.markdown("<span style='color:red;font-size:20px'>X</span> " + "Homoscedasticity", unsafe_allow_html=True)
 
-				#NORMALITY
+				# NORMALITY
 				stat, p = shapiro(residual)
 
 				#st.write('Shapiro test statistic: ', stat)
@@ -112,7 +112,7 @@ if uploaded_file is not None:
 				else:	
 					st.markdown("<span style='color:red;font-size:20px'>X</span> " + "Normality", unsafe_allow_html=True)
 	
-				#AUTOCORRELATION  
+				# AUTOCORRELATION  
 					
 				dw = sm.stats.stattools.durbin_watson(results.resid)
 
@@ -144,7 +144,7 @@ if uploaded_file is not None:
 				elif (6-count) == 1:
 					st.write("**"+"Word of Caution :"+"**")
 					st.write("As "+str(6-count)+" regression model assumption is not statisfied. Therefore the provided results can lead to biased and unreliable estimates of the regression coefficients, and incorrect or misleading inferences about the relationship between the predictor variables and the response variable")
-					st.write("**"+"Piece Of Advice :"+"**")
+					st.write("**"+"Piece of Advice :"+"**")
 					st.write("To address that issues, it may be necessary to use alternative regression methods, such as \
 							generalized linear models, robust regression methods, or machine learning algorithms that \
 							can handle nonlinear relationships, heteroscedasticity, autocorrelation, multicollinearity, and outliers more effectively.\
@@ -169,10 +169,10 @@ if uploaded_file is not None:
 				if len(x_columns) >= 2: 
 					st.write("**"+"VALIDATING ASSUMPTIONS:"+"**")
 
-					#LINEARITY
+					# LINEARITY
 					st.markdown("<span style='color:green;font-size:20px'>✓</span> " + "Linearity", unsafe_allow_html=True)
 
-					#INDEPENDENCE
+					# INDEPENDENCE
 					st.markdown("<span style='color:green;font-size:20px'>✓</span> " + "Independence of observation", unsafe_allow_html=True)
 					
 					residual = results.resid
@@ -183,14 +183,14 @@ if uploaded_file is not None:
 					#st.write('White test p-value: ', white_test[1])
 
 					count = 2
-					#HOMOSCEDASTICITY
+					# HOMOSCEDASTICITY
 					if white_test[1] > 0.05:
 						count = count + 1
 						st.markdown("<span style='color:green;font-size:20px'>✓</span> " + "Homoscedasticity", unsafe_allow_html=True)
 					else:
 						st.markdown("<span style='color:red;font-size:20px'>X</span> " + "Homoscedasticity", unsafe_allow_html=True)
 
-					#NORMALITY
+					# NORMALITY
 					stat, p = shapiro(residual)
 
 					#st.write('Shapiro test statistic: ', stat)
@@ -202,7 +202,7 @@ if uploaded_file is not None:
 					else:	
 						st.markdown("<span style='color:red;font-size:20px'>X</span> " + "Normality", unsafe_allow_html=True)
 
-					#MULTICOLINEARITY
+					# MULTICOLINEARITY
 					VIF = pd.DataFrame()
 					VIF['VIF'] = [vif(X.values,i) for i in range(X.shape[1])]
 					VIF['FEATURES'] = X.columns	
@@ -217,7 +217,7 @@ if uploaded_file is not None:
 					else: 
 						st.markdown("<span style='color:red;font-size:20px'>X</span> " + "Multicollinearity", unsafe_allow_html=True)
 	
-					#AUTOCORRELATION  
+					# AUTOCORRELATION  
 					
 					dw = sm.stats.stattools.durbin_watson(results.resid)
 
