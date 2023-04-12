@@ -12,7 +12,7 @@ from scipy.stats import shapiro
 from statsmodels.stats.outliers_influence import variance_inflation_factor as vif
 
 
-st.title("Regression Analysis using Streamlit")
+st.title("Regression Analysis App by Mohammad Wasiq")
 
 st.subheader("AN ILLUSTRATIVE WEBPAGE FOR CURIOUS PEOPLES :)")
 
@@ -260,18 +260,4 @@ if uploaded_file is not None:
 						st.write("All assumptions are statisfied, therefore the provided results are relaible.")	
 
 
-
-
-	
-	
-
-	
-	
-
-					
-				
-
-
-
-        
 
